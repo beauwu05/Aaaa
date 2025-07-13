@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Malla Curricular Enfermería - Interactiva</title>
+  <script type="text/javascript" src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+  <style>
+    #mynetwork {
+      width: 100%;
+      height: 800px;
+      border: 1px solid lightgray;
+    }
+    body {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Malla Curricular Interactiva - Enfermería (Semestres 1 al 4)</h2>
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+  const nodes = [
+    { "id": "DQUI1050", "label": "Química General y Orgánica\n(DQUI1050)", "level": 1 },
+    { "id": "DMOR0030", "label": "Morfología Básica\n(DMOR0030)", "level": 1 },
+    { "id": "FORI0001", "label": "Antropología\n(FORI0001)", "level": 1 },
+    { "id": "DBIO1084", "label": "Biología Celular\n(DBIO1084)", "level": 1 },
+    { "id": "ENFEA003", "label": "Bases de la Enfermería\n(ENFEA003)", "level": 1 },
+    { "id": "ENFEA004", "label": "Psicología Evolutiva\n(ENFEA004)", "level": 1 },
+    { "id": "DBIO1092", "label": "Bioquímica General\n(DBIO1092)", "level": 2 },
+    { "id": "DBIO1097", "label": "Microbiología General\n(DBIO1097)", "level": 2 },
+    { "id": "DMOR0022", "label": "Fisiología I\n(DMOR0022)", "level": 2 },
+    { "id": "FACU0004", "label": "Salud Digital\n(FACU0004)", "level": 2 },
+    { "id": "ENFEB003", "label": "Calidad e Infecciones (IAS)\n(ENFEB003)", "level": 2 },
+    { "id": "ENFEB004", "label": "Salud Intercultural\n(ENFEB004)", "level": 2 },
+    { "id": "DMOR0023", "label": "Fisiología II\n(DMOR0023)", "level": 3 },
+    { "id": "DBIO1098", "label": "Farmacología General\n(DBIO1098)", "level": 3 },
+    { "id": "DPSU0012", "label": "Salud Poblacional\n(DPSU0012)", "level": 3 },
+    { "id": "ENFEC004", "label": "Enfermería Curso de Vida\n(ENFEC004)", "level": 3 },
+    { "id": "ENFEC005", "label": "Educación para la Salud\n(ENFEC005)", "level": 3 },
+    { "id": "ENFEC006", "label": "Comunicación Interdisciplinar\n(ENFEC006)", "level": 3 },
+    { "id": "ENFED005", "label": "Cuidado Adulto I\n(ENFED005)", "level": 4 },
+    { "id": "FORI0002", "label": "Ética\n(FORI0002)", "level": 4 },
+    { "id": "ENFED006", "label": "Práctica Basada en Evidencia\n(ENFED006)", "level": 4 },
+    { "id": "ENFED007", "label": "Gestión del Cuidado\n(ENFED007)", "level": 4 },
+    { "id": "ENFED008", "label": "Hito Evaluativo Integrativo\n(ENFED008)", "level": 4 }
+  ];
+
+  const edges = [
+    { "from": "DQUI1050", "to": "DBIO1092" },
+    { "from": "DBIO1084", "to": "DBIO1097" },
+    { "from": "DBIO1084", "to": "DMOR0022" },
+    { "from": "DMOR0022", "to": "DMOR0023" },
+    { "from": "DMOR0022", "to": "DBIO1098" },
+    { "from": "ENFEC004", "to": "ENFED005" }
+  ];
+
+  const container = document.getElementById('mynetwork');
+  const data = {
+    nodes: new vis.DataSet(nodes),
+    edges: new vis.DataSet(edges)
+  };
+  const options = {
+    layout: {
+      hierarchical: {
+        direction: 'UD',
+        sortMethod: 'directed',
+        levelSeparation: 150,
+        nodeSpacing: 200
+      }
+    },
+    physics: false,
+    nodes: {
+      shape: 'box',
+      margin: 10,
+      color: {
+        background: '#D6EAF8',
+        border: '#2980B9'
+      },
+      font: {
+        color: '#1B2631',
+        size: 14
+      }
+    },
+    edges: {
+      arrows: 'to'
+    }
+  };
+  new vis.Network(container, data, options);
+</script>
+
+</body>
+</html>
